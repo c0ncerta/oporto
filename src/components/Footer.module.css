@@ -127,3 +127,189 @@
         padding: 60px 0;
     }
 }
+
+/* ===== LINKEDIN MODAL ===== */
+
+/* Reset button styles for .link when used as <button> */
+.linkBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding: 0;
+}
+
+/* Overlay */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: modalFadeIn 0.3s var(--ease-out-expo);
+}
+
+/* Card */
+.modalCard {
+    position: relative;
+    max-width: 420px;
+    width: calc(100% - 40px);
+    padding: 48px 36px 36px;
+    border-radius: 20px;
+    background: rgba(10, 10, 22, 0.92);
+    border: 1px solid var(--border-accent);
+    text-align: center;
+    overflow: hidden;
+    animation: modalSlideIn 0.4s var(--ease-out-expo);
+}
+
+/* Glow behind card */
+.modalGlow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+/* Icon */
+.modalIcon {
+    display: inline-block;
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    filter: grayscale(0.3);
+    animation: modalPulse 2s ease-in-out infinite;
+}
+
+/* Title */
+.modalTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--accent) 0%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Message */
+.modalMessage {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 28px;
+}
+
+/* Button */
+.modalButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, var(--accent) 0%, #818cf8 100%);
+    color: #000;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.modalButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--accent-glow), 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Animations */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ===== EMAIL COPIED TOAST ===== */
+.toast {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: rgba(10, 10, 22, 0.92);
+    border: 1px solid var(--border-accent);
+    border-radius: 14px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-soft);
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.35s var(--ease-out-expo),
+        transform 0.35s var(--ease-out-expo);
+}
+
+.toastVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.toastIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #000;
+    font-size: 0.7rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}

@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import styles from "./Hero.module.css";
+
+const EMAIL = "rmdaod@proton.me";
 
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
@@ -18,6 +20,41 @@ export default function Hero() {
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const handleContactClick = useCallback(
+        (e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault();
+            const copyText = (text: string) => {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).catch(() => {
+                        const ta = document.createElement("textarea");
+                        ta.value = text;
+                        ta.style.position = "fixed";
+                        ta.style.opacity = "0";
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(ta);
+                    });
+                } else {
+                    const ta = document.createElement("textarea");
+                    ta.value = text;
+                    ta.style.position = "fixed";
+                    ta.style.opacity = "0";
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(ta);
+                }
+            };
+            copyText(EMAIL);
+            window.dispatchEvent(new CustomEvent("email-copied"));
+            setTimeout(() => {
+                window.location.href = `mailto:${EMAIL}`;
+            }, 100);
+        },
+        []
+    );
 
     return (
         <section className={styles.hero} id="hero">
@@ -51,9 +88,10 @@ export default function Hero() {
                 {/* CTAs */}
                 <div className={styles.ctas}>
                     <a
-                        href="mailto:rmdaod@proton.me"
+                        href={`mailto:${EMAIL}`}
                         className={styles.ctaPrimary}
                         id="hero-contact"
+                        onClick={handleContactClick}
                     >
                         <span>Contactar</span>
                         <span className={styles.ctaIcon}>✦</span>
@@ -83,3 +121,4 @@ export default function Hero() {
         </section>
     );
 }
+

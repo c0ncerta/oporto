@@ -4,9 +4,9 @@ import styles from "./About.module.css";
 
 const languages = [
     { lang: "Árabe", level: "Nativo", percent: 100 },
-    { lang: "Castellano", level: "Alto", percent: 95 },
-    { lang: "Catalán", level: "Alto", percent: 90 },
-    { lang: "Inglés", level: "C1 funcional", percent: 85 },
+    { lang: "Castellano", level: "Nativo", percent: 100 },
+    { lang: "Catalán", level: "Nativo", percent: 100 },
+    { lang: "Inglés", level: "C1 funcional", percent: 90 },
 ];
 
 export default function About() {

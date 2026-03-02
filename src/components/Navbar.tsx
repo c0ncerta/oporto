@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "./Navbar.module.css";
+
+const EMAIL = "rmdaod@proton.me";
 
 const navLinks = [
     { label: "Proyectos", href: "#proyectos" },
@@ -15,10 +17,61 @@ export default function Navbar() {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+            // Close mobile menu on scroll to prevent overlap
+            setMobileOpen(false);
+        };
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [mobileOpen]);
+
+    const handleContactClick = useCallback(
+        (e: React.MouseEvent<HTMLAnchorElement>) => {
+            e.preventDefault();
+            const copyText = (text: string) => {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).catch(() => {
+                        const ta = document.createElement("textarea");
+                        ta.value = text;
+                        ta.style.position = "fixed";
+                        ta.style.opacity = "0";
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(ta);
+                    });
+                } else {
+                    const ta = document.createElement("textarea");
+                    ta.value = text;
+                    ta.style.position = "fixed";
+                    ta.style.opacity = "0";
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(ta);
+                }
+            };
+            copyText(EMAIL);
+            window.dispatchEvent(new CustomEvent("email-copied"));
+            setTimeout(() => {
+                window.location.href = `mailto:${EMAIL}`;
+            }, 100);
+        },
+        []
+    );
 
     return (
         <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`} id="navbar">
@@ -50,9 +103,10 @@ export default function Navbar() {
 
                 <div className={styles.actions}>
                     <a
-                        href="mailto:rmdaod@proton.me"
+                        href={`mailto:${EMAIL}`}
                         className={styles.contactBtn}
                         id="nav-contact"
+                        onClick={handleContactClick}
                     >
                         Contactar
                     </a>
@@ -70,3 +124,4 @@ export default function Navbar() {
         </nav>
     );
 }
+
