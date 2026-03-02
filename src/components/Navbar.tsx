@@ -24,8 +24,15 @@ export default function Navbar() {
         <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`} id="navbar">
             <div className={styles.inner}>
                 <a href="#" className={styles.logo} id="nav-logo">
-                    <span className={styles.logoIcon}>✦</span>
-                    <span className={styles.logoText}>RD</span>
+                    <span className={styles.logoIcon}>
+                        <img
+                            src="/logo4.svg"
+                            alt=""
+                            aria-hidden="true"
+                            className={styles.logoIconImage}
+                        />
+                    </span>
+                    <span className={styles.logoText}>Ram Daod</span>
                 </a>
 
                 <div className={`${styles.links} ${mobileOpen ? styles.open : ""}`}>

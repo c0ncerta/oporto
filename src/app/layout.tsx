@@ -9,6 +9,11 @@ export const metadata: Metadata = {
     default: "Ram Daod — Full-Stack Developer",
     template: "%s | Ram Daod",
   },
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    shortcut: ["/favicon.png"],
+    apple: [{ url: "/favicon.png", type: "image/png" }],
+  },
   description:
     "Portfolio de Ram Daod. Desarrollador Full-Stack con foco frontend en React/Next.js y backend con Node.js. Barcelona.",
   keywords: [

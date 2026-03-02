@@ -19,7 +19,7 @@ type Project = {
 const projects: Project[] = [
     {
         id: 1,
-        title: "Discord-like App",
+        title: "Divilus (Discord-Like App)",
         subtitle: "App tipo chat para comunidades con soporte y moderación.",
         stack: ["Node.js", "TypeScript", "WebSocket"],
         problem:
@@ -31,6 +31,7 @@ const projects: Project[] = [
         featured: true,
         repoLabel: "En progreso · Repo privado",
         demoUrl: "https://divilus-demo.vercel.app/",
+        repoUrl: "https://github.com/c0ncerta/divilus-demo"
     },
     {
         id: 2,
@@ -42,6 +43,7 @@ const projects: Project[] = [
             "Sistema de creación de tickets y comandos de control para spam, advertencias y acciones disciplinarias.",
         impact: "Flujo de soporte más claro y tiempos de respuesta más predecibles.",
         repoLabel: "Próximamente",
+        
     },
     {
         id: 3,
@@ -134,7 +136,7 @@ export default function Projects() {
                                             rel="noopener noreferrer"
                                             className={styles.repoLink}
                                         >
-                                            Ver repositorio →
+                                            Ver repositorio demo →
                                         </a>
                                     ) : (
                                         <span className={styles.repoMuted}>
