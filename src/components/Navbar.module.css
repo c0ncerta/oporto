@@ -158,13 +158,11 @@
         align-items: center;
         justify-content: center;
         gap: 40px;
-        background: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
+        background: #000000;
         opacity: 0;
         pointer-events: none;
         transition: opacity var(--transition-fast);
-        z-index: 999;
+        z-index: 9998;
     }
 
     .links.open {
@@ -179,7 +177,7 @@
 
     .hamburger {
         display: flex;
-        z-index: 1001;
+        z-index: 9999;
     }
 
     .contactBtn {

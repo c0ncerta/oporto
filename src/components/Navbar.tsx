@@ -18,23 +18,46 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-            // Close mobile menu on scroll to prevent overlap
-            setMobileOpen(false);
+            // Only update scrolled state when menu is closed
+            if (!mobileOpen) {
+                setScrolled(window.scrollY > 50);
+            }
         };
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [mobileOpen]);
 
-    // Lock body scroll when mobile menu is open
+    // iOS-safe body scroll lock
     useEffect(() => {
         if (mobileOpen) {
+            const scrollY = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
             document.body.style.overflow = "hidden";
         } else {
+            const top = document.body.style.top;
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
             document.body.style.overflow = "";
+            // Restore scroll position
+            if (top) {
+                window.scrollTo(0, parseInt(top, 10) * -1);
+            }
         }
         return () => {
+            const top = document.body.style.top;
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
             document.body.style.overflow = "";
+            if (top) {
+                window.scrollTo(0, parseInt(top, 10) * -1);
+            }
         };
     }, [mobileOpen]);
 
