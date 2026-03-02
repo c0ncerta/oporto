@@ -62,8 +62,8 @@
     color: var(--text-primary);
 }
 
-/* Links */
-.links {
+/* Desktop Links */
+.desktopLinks {
     display: flex;
     gap: 32px;
 }
@@ -150,37 +150,64 @@
     transform: rotate(-45deg) translate(2.5px, -2.5px);
 }
 
+/* ===== MOBILE OVERLAY (outside nav to fix iOS) ===== */
+.mobileOverlay {
+    display: none;
+}
+
+.mobileLink {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.mobileLink:hover {
+    color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
-    .links {
-        position: fixed;
-        inset: 0;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 40px;
-        background: #000000;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity var(--transition-fast);
-        z-index: 9998;
-    }
-
-    .links.open {
-        opacity: 1;
-        pointer-events: all;
-    }
-
-    .link {
-        font-size: 1.5rem;
-        font-weight: 500;
+    .desktopLinks {
+        display: none;
     }
 
     .hamburger {
         display: flex;
-        z-index: 9999;
+        position: relative;
+        z-index: 10001;
     }
 
     .contactBtn {
         display: none;
+    }
+
+    .mobileOverlay {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        background: #000000;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity var(--transition-fast), visibility var(--transition-fast);
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        touch-action: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .mobileOverlayOpen {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
     }
 }

@@ -97,54 +97,72 @@ export default function Navbar() {
     );
 
     return (
-        <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`} id="navbar">
-            <div className={styles.inner}>
-                <a href="#" className={styles.logo} id="nav-logo">
-                    <span className={styles.logoIcon}>
-                        <img
-                            src="/logo4.svg"
-                            alt=""
-                            aria-hidden="true"
-                            className={styles.logoIconImage}
-                        />
-                    </span>
-                    <span className={styles.logoText}>Ram Daod</span>
-                </a>
-
-                <div className={`${styles.links} ${mobileOpen ? styles.open : ""}`}>
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.href}
-                            href={link.href}
-                            className={styles.link}
-                            onClick={() => setMobileOpen(false)}
-                        >
-                            {link.label}
-                        </a>
-                    ))}
-                </div>
-
-                <div className={styles.actions}>
-                    <a
-                        href={`mailto:${EMAIL}`}
-                        className={styles.contactBtn}
-                        id="nav-contact"
-                        onClick={handleContactClick}
-                    >
-                        Contactar
+        <>
+            <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`} id="navbar">
+                <div className={styles.inner}>
+                    <a href="#" className={styles.logo} id="nav-logo">
+                        <span className={styles.logoIcon}>
+                            <img
+                                src="/logo4.svg"
+                                alt=""
+                                aria-hidden="true"
+                                className={styles.logoIconImage}
+                            />
+                        </span>
+                        <span className={styles.logoText}>Ram Daod</span>
                     </a>
-                    <button
-                        className={styles.hamburger}
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        aria-label="Menú"
-                        id="nav-hamburger"
-                    >
-                        <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
-                        <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
-                    </button>
+
+                    <div className={styles.desktopLinks}>
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                className={styles.link}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
+
+                    <div className={styles.actions}>
+                        <a
+                            href={`mailto:${EMAIL}`}
+                            className={styles.contactBtn}
+                            id="nav-contact"
+                            onClick={handleContactClick}
+                        >
+                            Contactar
+                        </a>
+                        <button
+                            className={styles.hamburger}
+                            onClick={() => setMobileOpen(!mobileOpen)}
+                            aria-label="Menú"
+                            id="nav-hamburger"
+                        >
+                            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
+                            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ""}`} />
+                        </button>
+                    </div>
                 </div>
+            </nav>
+
+            {/* Mobile overlay — OUTSIDE nav to avoid iOS nested fixed bug */}
+            <div
+                className={`${styles.mobileOverlay} ${mobileOpen ? styles.mobileOverlayOpen : ""}`}
+                aria-hidden={!mobileOpen}
+            >
+                {navLinks.map((link) => (
+                    <a
+                        key={link.href}
+                        href={link.href}
+                        className={styles.mobileLink}
+                        onClick={() => setMobileOpen(false)}
+                    >
+                        {link.label}
+                    </a>
+                ))}
             </div>
-        </nav>
+        </>
     );
 }
 
