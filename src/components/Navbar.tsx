@@ -27,18 +27,22 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [mobileOpen]);
 
-    // Prevent body scroll when mobile menu is open
+    // Prevent background scroll when mobile menu is open
+    // Uses touchmove prevention for iOS Safari (overflow:hidden doesn't work there)
     useEffect(() => {
-        if (mobileOpen) {
-            document.body.style.overflow = "hidden";
-            document.body.style.touchAction = "none";
-        } else {
-            document.body.style.overflow = "";
-            document.body.style.touchAction = "";
-        }
+        if (!mobileOpen) return;
+
+        document.body.style.overflow = "hidden";
+
+        const preventScroll = (e: TouchEvent) => {
+            e.preventDefault();
+        };
+
+        document.addEventListener("touchmove", preventScroll, { passive: false });
+
         return () => {
             document.body.style.overflow = "";
-            document.body.style.touchAction = "";
+            document.removeEventListener("touchmove", preventScroll);
         };
     }, [mobileOpen]);
 

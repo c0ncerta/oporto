@@ -64,7 +64,17 @@
     display: flex;
     gap: 48px;
     width: max-content;
-    animation: marquee 25s linear infinite;
+    animation: marqueeScroll 35s linear infinite;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .marqueeItem {
@@ -75,12 +85,20 @@
     white-space: nowrap;
     -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
     user-select: none;
-    transition: color var(--transition-fast);
+    transition: color 0.4s ease, -webkit-text-stroke-color 0.4s ease;
+    transition-delay: 0.15s;
 }
 
 .marqueeItem:hover {
-    color: rgba(167, 139, 250, 0.15);
+    color: rgba(167, 139, 250, 0.2);
     -webkit-text-stroke-color: var(--accent);
+    transition-delay: 0s;
+}
+
+.marqueeActive {
+    color: rgba(167, 139, 250, 0.15);
+    -webkit-text-stroke-color: rgba(167, 139, 250, 0.6);
+    transition-delay: 0s;
 }
 
 /* Grid */
