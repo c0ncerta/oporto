@@ -1,0 +1,314 @@
+.section {
+    padding: var(--section-padding) 0;
+    position: relative;
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* Header */
+.header {
+    margin-bottom: 64px;
+}
+
+.sectionLabel {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+/* Featured Card */
+.featuredCard {
+    position: relative;
+    background: linear-gradient(135deg,
+            rgba(167, 139, 250, 0.08) 0%,
+            rgba(99, 102, 241, 0.04) 50%,
+            rgba(0, 0, 0, 0) 100%);
+    border: 1px solid var(--border-accent);
+    border-radius: 24px;
+    padding: 48px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    transition: all var(--transition-smooth);
+}
+
+.featuredCard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right,
+            var(--accent-soft) 0%,
+            transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    pointer-events: none;
+}
+
+.featuredCard:hover::before {
+    opacity: 1;
+}
+
+.featuredBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--accent-soft);
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.badgeDot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+}
+
+.featuredContent {
+    position: relative;
+    z-index: 1;
+}
+
+.featuredInfo {
+    margin-bottom: 32px;
+}
+
+.projectTitle {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+}
+
+.projectSub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+/* Stack pills */
+.stackRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.stackPill {
+    padding: 4px 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-subtle);
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+/* Details */
+.detailsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.detailItem {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+}
+
+.detailLabel {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+}
+
+.detailValue {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Footer */
+.projectFooter {
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.demoLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 100px;
+    transition: all var(--transition-fast);
+    letter-spacing: 0.01em;
+}
+
+.demoLink:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.repoLink {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: opacity var(--transition-fast);
+}
+
+.repoLink:hover {
+    opacity: 0.7;
+}
+
+.repoMuted {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Cards Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 36px;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top left,
+            var(--accent-soft) 0%,
+            transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    pointer-events: none;
+}
+
+.card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    background: var(--bg-card-hover);
+}
+
+.card:hover::after {
+    opacity: 1;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.cardNumber {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+.cardTitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.cardSub {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.cardDetails .detailItem {
+    padding: 14px;
+}
+
+@media (max-width: 768px) {
+    .detailsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featuredCard {
+        padding: 28px;
+    }
+
+    .card {
+        padding: 28px;
+    }
+}

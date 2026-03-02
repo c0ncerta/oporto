@@ -1,0 +1,153 @@
+.section {
+    padding: var(--section-padding) 0;
+    position: relative;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--border-subtle) 20%,
+            var(--border-subtle) 80%,
+            transparent);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.header {
+    margin-bottom: 64px;
+}
+
+.sectionLabel {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    align-items: start;
+}
+
+/* Text */
+.textBlock {
+    max-width: 560px;
+}
+
+.bigText {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+    background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bodyText {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+/* Languages */
+.languagesBlock {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    padding: 36px;
+}
+
+.langTitle {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 28px;
+}
+
+.langList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.langItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.langHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.langName {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.langLevel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+.langBar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.langFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #818cf8);
+    border-radius: 2px;
+    transition: width 1.5s var(--ease-out-expo);
+    animation: growBar 1.5s var(--ease-out-expo) forwards;
+    transform-origin: left;
+}
+
+@keyframes growBar {
+    from {
+        width: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}

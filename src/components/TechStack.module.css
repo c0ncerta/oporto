@@ -1,0 +1,165 @@
+.section {
+    padding: var(--section-padding) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--border-subtle) 20%,
+            var(--border-subtle) 80%,
+            transparent);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.header {
+    margin-bottom: 48px;
+}
+
+.sectionLabel {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+/* Marquee */
+.marqueeWrapper {
+    margin-bottom: 64px;
+    overflow: hidden;
+    mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+    -webkit-mask-image: linear-gradient(to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent);
+}
+
+.marquee {
+    display: flex;
+    gap: 48px;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+}
+
+.marqueeItem {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.06);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    user-select: none;
+    transition: color var(--transition-fast);
+}
+
+.marqueeItem:hover {
+    color: rgba(167, 139, 250, 0.15);
+    -webkit-text-stroke-color: var(--accent);
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.categoryBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.categoryLabel {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 4px;
+}
+
+.techList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.techCard {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all var(--transition-fast);
+    cursor: default;
+}
+
+.techCard:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.techDot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.techCard:hover .techDot {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.techName {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.techCard:hover .techName {
+    color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

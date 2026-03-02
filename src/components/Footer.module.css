@@ -1,0 +1,129 @@
+.footer {
+    padding: var(--section-padding) 0 40px;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--border-subtle) 20%,
+            var(--border-subtle) 80%,
+            transparent);
+}
+
+.container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* CTA Block */
+.ctaBlock {
+    text-align: center;
+    padding: 80px 0;
+}
+
+.ctaHeading {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+}
+
+.ctaText {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.ctaButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 100px;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.ctaButton:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 50px var(--accent-glow), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ctaIcon {
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+/* Divider */
+.divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin-bottom: 32px;
+}
+
+/* Bottom */
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.links {
+    display: flex;
+    gap: 28px;
+}
+
+.link {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width var(--transition-fast);
+}
+
+.link:hover {
+    color: var(--text-primary);
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+    .bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .ctaBlock {
+        padding: 60px 0;
+    }
+}
