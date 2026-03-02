@@ -151,6 +151,14 @@ export default function Navbar() {
                 className={`${styles.mobileOverlay} ${mobileOpen ? styles.mobileOverlayOpen : ""}`}
                 aria-hidden={!mobileOpen}
             >
+                <button
+                    className={styles.mobileClose}
+                    onClick={() => setMobileOpen(false)}
+                    aria-label="Cerrar menú"
+                >
+                    <span className={styles.mobileCloseBar} />
+                    <span className={styles.mobileCloseBar} />
+                </button>
                 {navLinks.map((link) => (
                     <a
                         key={link.href}
